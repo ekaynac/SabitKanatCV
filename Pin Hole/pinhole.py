@@ -23,10 +23,7 @@ class Distance:
         self.px_to_m_y2 = 0 # as meter/px
         self.real_distance_on_x = 0 # as meter
         self.real_distance_on_y = 0 # as meter
-        self.region1 = 1
-        self.region2 = 2
-        self.region3 = 3
-        self.region4 = 4
+
     @staticmethod
     def seen_distance_calculator(fow_degree, angle_theta, height):
 
@@ -110,7 +107,7 @@ class Distance:
                 self.distance_px_from_contours_update(480,480,360,360)
                 self.find_region_update()
                 self.real_distance_find_update()
-                #print(self.real_distance_on_x, self.real_distance_on_y)
+                print(self.real_distance_on_x, self.real_distance_on_y)
                 cv.imshow("sex",frame)
             if cv.waitKey(10) == ord("q"):
                 break
