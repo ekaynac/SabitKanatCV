@@ -1,5 +1,5 @@
 import cv2 as cv
-import time
+
 class cvDetector:
     # Empty function for slider arguments
     @staticmethod
