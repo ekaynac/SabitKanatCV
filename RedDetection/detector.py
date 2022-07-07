@@ -1,4 +1,5 @@
 import cv2 as cv
+from cv2 import contourArea
 
 class cvDetector:
     # Empty function for slider arguments
@@ -40,22 +41,33 @@ class cvDetector:
     # Returns a new frame with rectangles on given contours
     # Returns drawn rectangles' min-max x coordinates and min-max y coordinates
     @staticmethod
-    def drawRectangle(frame, contours, area_thresh=(0,50000), rectangle_color=(255,0,0), rectangle_thickness=2):
+    def drawRectangle(frame, contours, area_thresh=(0,50000), rectangle_color=(255,0,0), rectangle_thickness=2,best=True):
         area_l_thresh = area_thresh[0]
         area_u_thresh = area_thresh[1]
         frame_rectangled = frame.copy()
         x_list = []
         y_list = []
+        inbound_contours = []
         for contour in contours:
             (x, y, w, h) = cv.boundingRect(contour)
 
             if cv.contourArea(contour) > area_l_thresh and cv.contourArea(contour) < area_u_thresh:
-                cv.rectangle(frame_rectangled, (x, y), (x+w, y+h), rectangle_color, rectangle_thickness)
-                cv.putText(frame_rectangled,"Tespit Edildi", (10,30), cv.FONT_HERSHEY_SIMPLEX,
-                                        1, (0, 0, 255), 3)
-                x_list.append((x,x+w))
-                y_list.append((y,y+h))
+                inbound_contours.append(contour)
+                if best:
+                    sorted_inbound_contours = max(contours, key=cv.contourArea)
+                    M = cv.moments(sorted_inbound_contours)
+                    cX = int(M["m10"] / M["m00"])
+                    cY = int(M["m01"] / M["m00"])
+                    cv.circle(frame_rectangled, (cX, cY), 7, (255,0,0), -1)
+                else:
+                    cv.rectangle(frame_rectangled, (x, y), (x+w, y+h), rectangle_color, rectangle_thickness)
+                    cv.putText(frame_rectangled,"Tespit Edildi", (10,30), cv.FONT_HERSHEY_SIMPLEX,
+                                            1, (0, 0, 255), 3)
+                    x_list.append((x,x+w))
+                    y_list.append((y,y+h))
         return frame_rectangled, x_list, y_list
+        
+
     # Takes a frame (does not change the given argument frame)
     # Takes upper and lower bound for mask    
     @staticmethod
