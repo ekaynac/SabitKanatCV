@@ -1,0 +1,7 @@
+1-Vision-based UAV landing on the moving vehicle : https://ieeexplore.ieee.org/abstract/document/7502574
+
+2- Distance estimation from monocular camera : http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.228.1007&rep=rep1&type=pdf
+
+3- Approach Methods for Autonomous Precision Aerial Drop from a UAV : https://www.sciencedirect.com/science/article/pii/S2405896317310030
+
+4- Example video : https://www.youtube.com/watch?v=GlmJmjQRLmI&list=PLelb3ZzP70dQfaAKtQVHYHxFEVJFGoayK

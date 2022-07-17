@@ -1,0 +1,3 @@
+1- https://github.com/jetsonhacks/installROS
+2- echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+3- source ~/.bashrc

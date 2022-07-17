@@ -1,0 +1,1 @@
+https://www.forecr.io/blogs/installation/how-to-install-opencv-with-cuda-support

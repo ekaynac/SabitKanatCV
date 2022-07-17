@@ -1,0 +1,16 @@
+1-install the pkgs such as ros-mavors etc.
+2-from QGC update the software to accsess parameters 
+  -SERIAL2_PROTOCOL = 1 (or mav_prot = telem2) (to enable MAVLink on the serial port.)
+  -SERIAL2_BAUD = 57 (up to 921000)
+3-connect the cube via usb
+4-get the access link : ls /dev/tty*
+5-find the connection such as /dev/ttyACM0
+  -sudo chmod 666 /dev/ttyACM0
+  -should be : crw-rw-rw- 1 root dialout smt smt smt
+6-initiate the mavros :  roslaunch mavros apm2.launch fcu_url:=/dev/ttyACM0:57600
+7-if you want to set default connection port 
+  -roscd mavros
+  -cd launc 
+  -sudo nano apm.launch
+  -Find the line <arg name="fcu_url" default="/dev/ttyS0:57600" /> and modify it according to your need in appropriate format: default="<tty port>:<baud rate>"
+  -After setting, the launch command can be simplified to: roslaunch mavros apm.launch
